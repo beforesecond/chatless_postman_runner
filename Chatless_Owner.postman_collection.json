@@ -1,0 +1,471 @@
+{
+	"info": {
+		"_postman_id": "129153fb-3a31-4c43-9759-ea109f38f1f8",
+		"name": "Chatless_Owner",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e4e5d3a3-5543-4f7d-ace5-b5c3dd989948",
+						"exec": [
+							"pm.test(\"Test login\", function () {",
+							"   var jsonData = pm.response.json();",
+							"    pm.expect(pm.response.text()).to.include(\"accessToken\");",
+							"    pm.environment.set(\"accessToken\",jsonData.data.login.accessToken); ",
+							"});",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-authen",
+						"value": "=zSjyDm9eAC8ffwochm1yyU7k5rDXa7tD",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\n  login(input:{email:\"first.owner@gmail.com\",password:\"1234567\",grantType:\"password\"}) {\n    accessToken\n    tokenType\n    expiresIn\n    refreshToken\n    userId\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1323/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "selectRole",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "41dde721-26d2-4703-a6f6-237f15b1ab65",
+						"exec": [
+							"pm.test(\"Test select role owner\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(pm.response.text()).to.include(\"owner\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation{\n  selectRole(role:\"owner\")\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1323/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getSocialMethod",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b8139d14-00ac-43c4-8ee4-3a4a51805a88",
+						"exec": [
+							"pm.test(\"Test get social method\", function () {",
+							"   var jsonData = pm.response.json();",
+							"    pm.expect(pm.response.text()).to.include(\"id\");",
+							"    pm.environment.set(\"categoryId\",jsonData.data.allSocialMethod[0].category[0].id); ",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query {\n  allSocialMethod {\n    id\n    name\n    title\n    image\n    category {\n      id\n      name\n      title\n      image\n    }\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1323/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createPage",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "20025898-ca24-4abb-a7c3-d93459bcb256",
+						"exec": [
+							"pm.test(\"Test create page\", function () {",
+							"   var jsonData = pm.response.json();",
+							"    pm.expect(pm.response.text()).to.include(\"id\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\n  createPage(input:{\n    pageId:\"264231890283990\",\n    introPage:[{\n      header:\"General Cartoon\",\n      description: \"เว็บอ่านการ์ตูน\",\n      image:\"test.png\"\n    }],\n    quiz:[{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    }],\n    likes: 0,\n    category: [\"b8b34621-5e58-4c41-beb1-1e5bfb799611\"]\n    budget: 1000,\n    numberOfQuiz: 10\n    passScore: 7\n    desc: \"\"\n    picture: []\n    cover: \"\"\n  }){\n    id\n    pageId\n    passScore\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1323/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"query"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "main",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5f0a959b-c426-44b6-be82-fddf0349af81",
+						"exec": [
+							"pm.test(\"Test get for main screen owner\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(pm.response.text()).to.include(\"allMyPage\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query {\n  allMyPage{\n    id\n    introPage {\n      header      \n      description\n      image\n    }\n    followers {\n      id\n     \tusername\n      firstname\n      lastname\n      phone\n    }\n    facebookConversation {\n      id\n      conversations {\n        data {\n          id\n          messages {\n            data {\n              message\n              from {\n                id\n                email\n                name\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1323/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "home-fanpage",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0fcdf0fd-8d14-4809-9014-c57161c8bc03",
+						"exec": [
+							"pm.test(\"Test get for conversation home fanpage\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(pm.response.text()).to.include(\"conversations\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "{\n  getConversationsFacebook(pageId:\"264231890283990\",label:\"new\")\n  {\n    name\n    pageID\n    conversations {\n      id\n      conversationsId\n      unreadCount\n      messageCount\n      senders {\n        id\n        name\n        email\n      }\n      message {\n        id\n        message\n        from {\n          id\n          name\n          email\n        }\n        createdAt\n      }\n      lastMessage\n      lastUpdate\n    }\n  }\n  \n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1323/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "selectConversation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2cf89a34-15f2-49da-889c-1a939e70c6de",
+						"exec": [
+							"pm.test(\"Test get for conversation\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(pm.response.text()).to.include(\"message\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query {\n  getConversationByID(pageId:\"264231890283990\",id:\"t_2286766214961504\"){\n    id\n      unreadCount\n      messageCount\n      senders {\n        id\n        name\n        email\n      }\n      message {\n        id\n        message\n        from {\n          id\n          name\n          email\n        }\n        createdAt\n      }\n      lastMessage\n      lastUpdate\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1323/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sendMessageCustomerFanpage",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0b353385-3e3c-439b-a906-e855205ad589",
+						"exec": [
+							"pm.test(\"Test get for conversation\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(pm.response.text()).to.include(\"messageId\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation{\n  sendMessageFacebook(pageId:\"264231890283990\",conversationId:\"t_2286766214961504\",recipientId:\"2890425851077848\",message:\"ทักครับ\",typeMessage:\"text\"){\n    status\n    recipientId\n    messageId\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1323/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "allMyFreelancerList",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99bfff5-78ed-49ef-bed4-d6186b8ac3bd",
+						"exec": [
+							"pm.test(\"Test get my freelancerlist\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(pm.response.text()).to.include(\"allMyFreelancerList\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "{\n  allMyFreelancerList(pageUID:\"a3dd3dee-d401-4e53-af2d-fdbdf0d2e672\") {\n    id\n    name\n    phone\n    photo\n    score\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1323/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "assignChatToFreelancer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\n  createAssignChatToFreelancer(pageId:\"264231890283990\",freelancerId:\"58c1af89-6dff-45e8-b1b4-82c2e4d3e6c5\",conversationId:\"t_2286766214961504\"){\n    id\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1323/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

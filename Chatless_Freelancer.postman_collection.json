@@ -1,0 +1,783 @@
+{
+	"info": {
+		"_postman_id": "c9827129-284c-475a-9eed-059a889117da",
+		"name": "Chatless_Freelancer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "register",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b44f337b-7ed8-495c-81e6-1fae0b714fb5",
+						"exec": [
+							"pm.test(\"Test register\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(pm.response.text()).to.include(\"accessToken\");",
+							"    pm.environment.set(\"accessTokenFreelancer\", jsonData.data.createAccount.accessToken);",
+							"});",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "b1a720da-cf21-41e2-9ad7-727c68f451c3",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-authen",
+						"value": "=zSjyDm9eAC8ffwochm1yyU7k5rDXa7tD",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\n  createAccount(input:{\n    name:\"First\",\n    phone:\"0810149181\",\n    email:\"first.freelancer@gmail.com\",\n    password:\"1234567\",  \n  }){\n    accessToken\n    tokenType\n    expiresIn\n    refreshToken\n    userId\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1323/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2eee0ea5-b3a2-4275-8090-e4d5ccbee2d6",
+						"exec": [
+							"pm.test(\"Test login\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(pm.response.text()).to.include(\"accessToken\");",
+							"    pm.environment.set(\"accessTokenFreelancer\", jsonData.data.createAccount.accessToken);",
+							"});",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-authen",
+						"value": "=zSjyDm9eAC8ffwochm1yyU7k5rDXa7tD",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\n  login(input:{email:\"first.freelancer@gmail.com\",password:\"1234567\",grantType:\"password\"}) {\n    accessToken\n    tokenType\n    expiresIn\n    refreshToken\n    userId\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1323/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "checkFirstLogin",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ad1c3002-ed1b-49f1-9d48-721839029b66",
+						"exec": [
+							"pm.test(\"Test first login\", function () {",
+							"   var jsonData = pm.response.json();",
+							"   pm.expect(jsonData.data.checkFirstLogin.firstLogin).to.eql(false);",
+							"});",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessTokenFreelancer}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query {\n  checkFirstLogin{\n    firstLogin\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1323/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "selectRole",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1d0d02fc-3d2a-44d7-b89e-54dbad77bb8e",
+						"exec": [
+							"pm.test(\"Test select role\", function () {",
+							"   var jsonData = pm.response.json();",
+							"   pm.expect(jsonData.data.selectRole).to.eql(\"freelancer\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessTokenFreelancer}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation{\n  selectRole(role:\"freelancer\")\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1323/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateAccount",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0b08e755-7d2e-473d-ab59-d3bab304e257",
+						"exec": [
+							"pm.test(\"Test update account\", function () {",
+							"   pm.expect(pm.response.text()).to.include(\"id\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessTokenFreelancer}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation{\n  updateAccount(input:{\n    name:\"First Freelancer\",\n    email:\"first.freelancer@gmail.com\",\n    phone:\"0810149182\",    \n    birthDay:\"04/01/1995\",\n    gender:\"Female\",\n    idCard:\"2234567890123\",\n    photo:\"image.png\",\n    social:[{\n      socialId:\"25d6132b-0b7d-42d7-b804-b37404b54a7f\",\n      category:[\"b8b34621-5e58-4c41-beb1-1e5bfb799611\"]\n    }]\n    country: [\"4455084e-9e24-40ff-a07f-5b9e002c076c\"]\n    city: [\"b7a3f71c-a073-45ea-acec-c40b97d2a7eb\"]\n    lang: [\"148acf29-034e-44e2-a3b5-384f2de89c74\",\"acff7191-8b70-4d2a-8ff1-a7becfb67445\"]\n  }){\n    id\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1323/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "discoverPage",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "48856dec-4319-4867-8071-34970d9d99d8",
+						"exec": [
+							"pm.test(\"Test get new discover page\", function () {",
+							"   pm.expect(pm.response.text()).to.include(\"id\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessTokenFreelancer}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query {\n  getAllNewPage{\n    id\n    pageId\n    introPage {\n      header\n      image\n      description\n    }\n    cover\n    desc\n    createdBy\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1323/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getQuizPage",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "61f15390-5963-477b-8754-8bfb6d7041dc",
+						"exec": [
+							"pm.test(\"Test get page quiz\", function () {",
+							"   pm.expect(pm.response.text()).to.include(\"id\");",
+							"    pm.expect(pm.response.text()).to.include(\"question\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessTokenFreelancer}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query {\n  getPageQuizById(id:\"a3dd3dee-d401-4e53-af2d-fdbdf0d2e672\"){\n   sessionQuizId\n    pageQuiz\n    { id\n    question\n    awnserChoice {\n      id\n      name\n      desc\n    }\n    awnserCorrect {\n      id\n      idAwnser\n      name\n    }\n  }\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1323/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "checkQuiz",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "82bdb556-480b-46cd-aa1f-05c4a5bd2df3",
+						"exec": [
+							"pm.test(\"Test get page quiz\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"score\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessTokenFreelancer}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation{\n  checkQuiz(\n    sessionQuizId:\"5c52c45f-992a-4359-bcc2-083da549c7a7\",\n    input:[\n      {\n    idQuiz:\"18d78d82-f5a2-47d6-9be6-e09862f3c629\"\n    idAwnser:\"96607345-e935-4cc8-bed3-f161c192160d\"\n      },\n      {\n    idQuiz:\"ddb30b01-9cec-4c49-80ab-74dedf5aa719\"\n    idAwnser:\"419d0949-c6b1-4149-a999-d219d8bca2ff\"\n      },\n      {\n    idQuiz:\"807f9453-3d55-4cec-8766-0f33aa90e81b\"\n    idAwnser:\"4865ed65-49ee-45c9-9f5e-58e61bc45c37\"\n      },\n      {\n    idQuiz:\"b78198dc-5489-47c1-bba9-c813c5b3188e\"\n    idAwnser:\"ce67ddb4-65ff-4007-92ea-a404ad17cbf3\"\n    },\n      {\n    idQuiz:\"985a862d-8e58-40b0-bff1-d48943a9fd2d\"\n    idAwnser:\"b7c1307f-b41e-426a-af3f-bc93c2004e50\"\n    },\n      {\n    idQuiz:\"debaa95d-1142-41b0-b85f-6cda51f5e2ac\"\n    idAwnser:\"b6e27c9d-e8d2-40d3-b2dd-c6d5f790a3e0\"\n    },\n      {\n    idQuiz:\"bc76e7cf-0140-434f-b69c-44698477a006\"\n    idAwnser:\"a36a16a6-ba76-4a03-b9a7-9317c1794328\"\n    },\n      {\n    idQuiz:\"cb589c96-e25a-4f4e-ac61-fa25548e5861\"\n    idAwnser:\"36b907b6-d7f1-4049-9142-1c8d7be8b90c\"\n    },\n      {\n    idQuiz:\"ffeae13c-b6db-4fda-88bf-f904c9b69083\"\n    idAwnser:\"3a12f722-d02a-4c7f-b6e4-d5191efe679c\"\n    },\n      {\n    idQuiz:\"199c8dcb-baa5-4a82-80b5-e780cd8cf57f\"\n    idAwnser:\"436805e4-416d-461c-aff8-0baf1448d69c\"\n    }\n    ]){\n    score\n    pass\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1323/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "allAssignChatByFreelancer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1410c3f0-3d11-4e60-87c0-48683a904f4c",
+						"exec": [
+							"pm.test(\"Test get new discover page\", function () {",
+							"   pm.expect(pm.response.text()).to.include(\"id\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessTokenFreelancer}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "{\n  allAssignChatByFreelancer(status:\"pending\"){\n    id\n    pageId\n    conversationId\n    freelancerId\n    createdAt\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1323/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "acceptAssign",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4d1ac91b-eb16-4b46-b6d3-a072ed16eff8",
+						"exec": [
+							"pm.test(\"Test get new discover page\", function () {",
+							"   pm.expect(pm.response.text()).to.include(\"id\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessTokenFreelancer}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\n  acceptAssignChatByFreelancer(id:\"2696143f-be46-485a-8299-0ee21bb33ef9\"){\n    id\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1323/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getHomeMain",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b11ad07c-e4a4-47f5-b990-5525af3f3793",
+						"exec": [
+							"pm.test(\"Test get new discover page\", function () {",
+							"   pm.expect(pm.response.text()).to.include(\"pageID\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessTokenFreelancer}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query {\n  myPageCountUnreadFacebookByFreelancer {\n    pageID\n    unread\n    picture\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1323/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getHomeFanpage",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b7fbf2af-8604-402f-a416-33c2286de194",
+						"exec": [
+							"pm.test(\"Test get new discover page\", function () {",
+							"   pm.expect(pm.response.text()).to.include(\"conversations\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessTokenFreelancer}}",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "{\n  getConversationsFacebookByFreelancer(pageId:\"264231890283990\",status:\"accept\",label:\"new\"){\n    pageID\n    conversations {\n      id\n      senders {\n        id\n        email\n        name\n      }\n      message {\n        id\n        message\n        from {\n          id\n          email\n          name\n        }\n      }\n      lastMessage\n    }\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1323/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getConversation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b00669cc-ecec-4e88-9e27-fe5ead0dcadf",
+						"exec": [
+							"pm.test(\"Test get new discover page\", function () {",
+							"   pm.expect(pm.response.text()).to.include(\"getConversationFacebookByFreelancer\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessTokenFreelancer}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "{\n  getConversationFacebookByFreelancer(pageId:\"264231890283990\",id:\"t_2286766214961504\"){\n    id\n      unreadCount\n      messageCount\n      senders {\n        id\n        name\n        email\n      }\n      message {\n        id\n        message\n        from {\n          id\n          name\n          email\n        }\n        createdAt\n      }\n      lastMessage\n      lastUpdate\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1323/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sendMessage",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "990b2a9e-1b3f-454f-b1f9-28238138496e",
+						"exec": [
+							"pm.test(\"Test get new discover page\", function () {",
+							"   pm.expect(pm.response.text()).to.include(\"messageId\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessTokenFreelancer}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\n  sendMessageFacebookByFreelancer(pageId:\"264231890283990\",conversationId:\"t_2286766214961504\",recipientId:\"2890425851077848\",message:\"https://i.imgur.com/GSoZ9a3.jpg\",typeMessage:\"image\"){\n    status\n    messageId\n    recipientId\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1323/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createTemplateChat",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ae8aaa6f-1108-4819-87d0-e5c0c8f9a9d2",
+						"exec": [
+							"pm.test(\"Test get new discover page\", function () {",
+							"   pm.expect(pm.response.text()).to.include(\"createTemplateChat\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessTokenFreelancer}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\n  createTemplateChat(title:\"แนะนำ 1\",message:\"ลูกค้าสนใจสินค้า...\"){\n    id\n  }\n }",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1323/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getTemplateChat",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4630c25e-05f7-4990-a276-5b8f8e3fa6f8",
+						"exec": [
+							"pm.test(\"Test get new discover page\", function () {",
+							"   pm.expect(pm.response.text()).to.include(\"allMyTemplateChat\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessTokenFreelancer}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "{\n  allMyTemplateChat{\n    id\n    title\n    message\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1323/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
