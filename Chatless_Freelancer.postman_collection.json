@@ -6,6 +6,64 @@
 	},
 	"item": [
 		{
+			"name": "social",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-authen",
+						"value": "=zSjyDm9eAC8ffwochm1yyU7k5rDXa7tD",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "{\n  allSocialMethod {\n    id\n    name\n    title\n    image\n    category {\n      id\n      name\n      title\n      image\n    }\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1323/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "countryCityLang",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "{\n  allCountry{\n    id\n    name\n    cities {\n      id\n      name\n    }\n  }\n  allCities {\n    id\n    name\n  }\n  allLang {\n    id\n    name\n  }\n  getCitiesByCountry(countryId:\"4455084e-9e24-40ff-a07f-5b9e002c076c\"){\n    id\n    name\n  }\n}\n",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1323/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "register",
 			"event": [
 				{
@@ -53,7 +111,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation {\n  createAccount(input:{\n    name:\"First\",\n    phone:\"0810149181\",\n    email:\"first.freelancer@gmail.com\",\n    password:\"1234567\",  \n  }){\n    accessToken\n    tokenType\n    expiresIn\n    refreshToken\n    userId\n  }\n}",
+						"query": "mutation {\n  createAccount(input:{\n    name:\"First\",\n    phone:\"0810149181\",\n    email:\"test.freelancer@gmail.com\",\n    password:\"1234567\",  \n  }){\n    accessToken\n    tokenType\n    expiresIn\n    refreshToken\n    userId\n  }\n}",
 						"variables": ""
 					}
 				},
@@ -761,6 +819,466 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "{\n  allMyTemplateChat{\n    id\n    title\n    message\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1323/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateLabel",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4ba17402-d669-4455-aa08-87ee7f1c4a3c",
+						"exec": [
+							"pm.test(\"Test get new discover page\", function () {",
+							"   pm.expect(pm.response.text()).to.include(\"updateLabelByFreelancer\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessTokenFreelancer}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\n  updateLabelByFreelancer(id:\"a3a72045-43c6-4745-a949-dfbc4ff22ba7\",label:\"old\"){\n    id\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1323/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cancelAssign",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5c0dfc8c-4804-41b9-96a1-f033690a6798",
+						"exec": [
+							"pm.test(\"Test get new discover page\", function () {",
+							"   pm.expect(pm.response.text()).to.include(\"cancelAssignChatByFreelancer\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessTokenFreelancer}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\n  cancelAssignChatByFreelancer(id:\"cad3a2b6-426c-47fe-b55a-8eeaac81396b\"){\n    id\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1323/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "myWallet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f8a9b3a2-97b7-4d6f-8079-8dcbb6c516aa",
+						"exec": [
+							"pm.test(\"Test get new discover page\", function () {",
+							"   pm.expect(pm.response.text()).to.include(\"myWallet\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessTokenFreelancer}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "{\n  myWallet {\n    balance\n    income\n    expense\n  }\n  allMyTransactionPayment{\n    id\n    amount\n    status\n    paymentType\n    bankAccountId\n    bankAccountLoader {\n      id\n      branch\n      bankLoader {\n        id\n        name\n        shortName\n      }\n      accountNumber\n    }\n    recieverLoader {\n       id\n      name\n      phone\n      photo\n    }\n    createByLoader {\n        id\n      name\n      phone\n      photo\n    }\n    \n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1323/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "allMyBankAccount",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "12d1d266-aee3-4b94-b82c-7e6d83f0e06a",
+						"exec": [
+							"pm.test(\"Test get new discover page\", function () {",
+							"   pm.expect(pm.response.text()).to.include(\"allMyBankAccount\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessTokenFreelancer}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "{\n  allMyBankAccount {\n    id\n    bankID\n    bankLoader {\n      id\n      name\n      shortName\n      picture\n    }\n    branch\n    accountName\n    accountNumber\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1323/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "withDraw",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "deeb9050-d641-4cb5-95ae-f57a536dcc9b",
+						"exec": [
+							"pm.test(\"Test get new discover page\", function () {",
+							"   pm.expect(pm.response.text()).to.include(\"withdraw\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessTokenFreelancer}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\n  withdraw(bankAccountId:\"234de4e3-5b2f-4cb8-84d4-02bc75c0065c\",amount:234)\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1323/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "manageWithdraw",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "be8d6c10-150f-4243-b7a2-51c88ad13ceb",
+						"exec": [
+							"pm.test(\"Test get new discover page\", function () {",
+							"   pm.expect(pm.response.text()).to.include(\"mangeWithdraw\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessTokenFreelancer}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\n  mangeWithdraw(id:\"644a764a-ee7e-4dd7-a4b5-cb2ce7966a14\",status:\"approve\")\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1323/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getMyAccountDetail",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "82f5f5b9-f13c-4a53-98a9-c30f418006b7",
+						"exec": [
+							"pm.test(\"Test get new discover page\", function () {",
+							"   pm.expect(pm.response.text()).to.include(\"getMyUserDetail\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessTokenFreelancer}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "{\n  getMyUserDetail {\n    id\n    email\n    name\n    phone\n    score\n    firstLang\n    firstLangLoader {\n      id\n      name\n    }\n    lang\n    langLoader {\n      id\n      name\n    }\n    city\n    cityLoader {\n      id\n      name\n    }\n    country\n    countryLoader {\n      id\n      name\n    }\n    facebook {\n     data {\n      id\n      name\n      category\n     }\n    }\n    social {\n      socialId\n      socialLoader {\n        id\n        name\n        title\n        image\n      }\n      category\n    }\n    followPage {\n      id\n      pageId\n      pageLoader {\n        id\n        pageId\n        desc\n        likes\n        pageOwner {\n          id\n          username\n          firstname\n          lastname\n          phone\n        }\n      }\n    }\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1323/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateAccount",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ab14f740-05f7-489b-886a-adf900ad3236",
+						"exec": [
+							"pm.test(\"Test get new discover page\", function () {",
+							"   pm.expect(pm.response.text()).to.include(\"updateAccountDetail\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessTokenFreelancer}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\n  updateAccountDetail(input:{\n     name: \"First Freelancer\",\n     email: \"first.freelancer@gmail.com\",\n     phone: \"0987654322\",\n     password:\"1234567\",\n     confirmPassword:\"1234567\"\n  })\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1323/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateRegionAndLanguage",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3f293661-7fdb-4a02-b24b-9482e79f0b2d",
+						"exec": [
+							"pm.test(\"Test get new discover page\", function () {",
+							"   pm.expect(pm.response.text()).to.include(\"updateRegionAndLanguage\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessTokenFreelancer}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\n  updateRegionAndLanguage(country:[\"4455084e-9e24-40ff-a07f-5b9e002c076c\",\"4455084e-9e24-40ff-a07f-5b9e002c076c\"],city:[\"b7a3f71c-a073-45ea-acec-c40b97d2a7eb\",\"b7a3f71c-a073-45ea-acec-c40b97d2a7eb\"],firstLang:\"148acf29-034e-44e2-a3b5-384f2de89c74\",otherLang:[\"148acf29-034e-44e2-a3b5-384f2de89c74\",\"acff7191-8b70-4d2a-8ff1-a7becfb67445\"])\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1323/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updatePersonalData",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "df25e478-e29f-453c-876f-8a8e8b4bfc1b",
+						"exec": [
+							"pm.test(\"Test get new discover page\", function () {",
+							"   pm.expect(pm.response.text()).to.include(\"updatePersonalData\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessTokenFreelancer}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\n  updatePersonalData(input:{\n    name:\"First Freelancer 1\",\n    email:\"first.freelancer@gmail.com\",\n    phone:\"0987654321\",\n    gender:\"Male\",\n    photo:\"image.png\",\n    birthDay:\"15/01/2563\",\n    idCard:\"1234567890123\"\n  })\n}",
 						"variables": ""
 					}
 				},
