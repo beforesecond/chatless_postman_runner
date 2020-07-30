@@ -24,12 +24,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:1323/query",
+					"raw": "http://api.chatless-dev.ml/query",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"api",
+						"chatless-dev",
+						"ml"
 					],
-					"port": "1323",
 					"path": [
 						"query"
 					]
@@ -41,21 +42,28 @@
 			"name": "countryCityLang",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "x-authen",
+						"value": "=zSjyDm9eAC8ffwochm1yyU7k5rDXa7tD",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "{\n  allCountry{\n    id\n    name\n    cities {\n      id\n      name\n    }\n  }\n  allCities {\n    id\n    name\n  }\n  allLang {\n    id\n    name\n  }\n  getCitiesByCountry(countryId:\"4455084e-9e24-40ff-a07f-5b9e002c076c\"){\n    id\n    name\n  }\n}\n",
+						"query": "{\n  allCountry{\n    id\n    name\n    cities {\n      id\n      name\n    }\n  }\n  allCities {\n    id\n    name\n  }\n  allLang {\n    id\n    name\n  }\n  getCitiesByCountry(countryId:\"1fa00334-8ebd-4b83-84db-fe81a31fd2d8\"){\n    id\n    name\n  }\n}\n",
 						"variables": ""
 					}
 				},
 				"url": {
-					"raw": "http://localhost:1323/query",
+					"raw": "http://api.chatless-dev.ml/query",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"api",
+						"chatless-dev",
+						"ml"
 					],
-					"port": "1323",
 					"path": [
 						"query"
 					]
@@ -111,17 +119,18 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation {\n  createAccount(input:{\n    name:\"First\",\n    phone:\"0810149181\",\n    email:\"test.freelancer@gmail.com\",\n    password:\"1234567\",  \n  }){\n    accessToken\n    tokenType\n    expiresIn\n    refreshToken\n    userId\n  }\n}",
+						"query": "mutation {\n  createAccount(input:{\n    name:\"First Freelancer\",\n    phone:\"0810149181\",\n    email:\"first.freelancer@gmail.com\",\n    password:\"1234567\",  \n    role:\"freelancer\"\n  }){\n    accessToken\n    tokenType\n    expiresIn\n    refreshToken\n    userId\n  }\n}",
 						"variables": ""
 					}
 				},
 				"url": {
-					"raw": "http://localhost:1323/query",
+					"raw": "http://api.chatless-dev.ml/query",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"api",
+						"chatless-dev",
+						"ml"
 					],
-					"port": "1323",
 					"path": [
 						"query"
 					]
@@ -140,7 +149,7 @@
 							"pm.test(\"Test login\", function () {",
 							"    var jsonData = pm.response.json();",
 							"    pm.expect(pm.response.text()).to.include(\"accessToken\");",
-							"    pm.environment.set(\"accessTokenFreelancer\", jsonData.data.createAccount.accessToken);",
+							"    pm.environment.set(\"accessTokenFreelancer\", jsonData.data.login.accessToken);",
 							"});",
 							"",
 							"",
@@ -157,22 +166,29 @@
 						"key": "x-authen",
 						"value": "=zSjyDm9eAC8ffwochm1yyU7k5rDXa7tD",
 						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
 					}
 				],
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation {\n  login(input:{email:\"first.freelancer@gmail.com\",password:\"1234567\",grantType:\"password\"}) {\n    accessToken\n    tokenType\n    expiresIn\n    refreshToken\n    userId\n  }\n}",
+						"query": "mutation {\n  login(input:{email:\"first.freelancer@gmail.com\",password:\"1234567\",grantType:\"password\",role:\"freelancer\"}) {\n    accessToken\n    tokenType\n    expiresIn\n    refreshToken\n    userId\n  }\n}",
 						"variables": ""
 					}
 				},
 				"url": {
-					"raw": "http://localhost:1323/query",
+					"raw": "http://api.chatless-dev.ml/query",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"api",
+						"chatless-dev",
+						"ml"
 					],
-					"port": "1323",
 					"path": [
 						"query"
 					]
@@ -278,6 +294,171 @@
 			"response": []
 		},
 		{
+			"name": "updateStep1",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessTokenFreelancer}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation{\n  updateAccount(input:{\n    name:\"First Freelancer\",\n    birthDay:\"04/01/1995\",\n    email:\"first.freelancer@gmail.com\",\n    phone:\"0810149182\",    \n    gender:\"Female\",\n    step:\"1\"\n  }){\n    id\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://api.chatless-dev.ml/query",
+					"protocol": "http",
+					"host": [
+						"api",
+						"chatless-dev",
+						"ml"
+					],
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateStep2",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessTokenFreelancer}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation{\n  updateAccount(input:{\n    idCard:\"2234567890123\",\n    photo:\"image.png\"\n    idCardPhoto:\"idcard.png\",\n    step:\"2\"\n  }){\n    id\n  }\n} ",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://api.chatless-dev.ml/query",
+					"protocol": "http",
+					"host": [
+						"api",
+						"chatless-dev",
+						"ml"
+					],
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateStep3",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessTokenFreelancer}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation{\n  updateAccount(input:{\n    social:[{\n      socialId:\"d5b45566-35c5-408c-bca8-7876013b1c5c\"\n    }]\n    step:\"3\"\n  }){\n    id\n  }\n} ",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://api.chatless-dev.ml/query",
+					"protocol": "http",
+					"host": [
+						"api",
+						"chatless-dev",
+						"ml"
+					],
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateStep4",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessTokenFreelancer}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation{\n  updateAccount(input:{\n    social:[{\n      socialId:\"d5b45566-35c5-408c-bca8-7876013b1c5c\",\n      category:[\"c6b49b0d-795a-4d2a-8d51-26d9e51bef4e\"]\n    }]\n    step:\"4\"\n  }){\n    id\n  }\n} ",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://api.chatless-dev.ml/query",
+					"protocol": "http",
+					"host": [
+						"api",
+						"chatless-dev",
+						"ml"
+					],
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateStep5",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessTokenFreelancer}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation{\n  updateAccount(input:{\n    country: [\"1fa00334-8ebd-4b83-84db-fe81a31fd2d8\"]\n    city: [\"e384e5bc-afef-421d-a68c-59ba1bd04037\"]\n    firstLang:\"81b24d98-10d5-4284-a4b0-d0a4e53503a8\",\n    lang: [\"81b24d98-10d5-4284-a4b0-d0a4e53503a8\",\"69b1303-3c48-4011-9f23-6fe8927e971f\"]\n    step:\"5\"\n  }){\n    id\n  }\n} ",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://api.chatless-dev.ml/query",
+					"protocol": "http",
+					"host": [
+						"api",
+						"chatless-dev",
+						"ml"
+					],
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "updateAccount",
 			"event": [
 				{
@@ -351,17 +532,18 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query {\n  getAllNewPage{\n    id\n    pageId\n    introPage {\n      header\n      image\n      description\n    }\n    cover\n    desc\n    createdBy\n  }\n}",
+						"query": "query {\n  allNewDiscoverPage{\n    uuid\n    pageId\n    introPage {\n      header\n      image\n      description\n    }\n    cover\n    desc\n    createdBy\n  }\n}",
 						"variables": ""
 					}
 				},
 				"url": {
-					"raw": "http://localhost:1323/query",
+					"raw": "http://api.chatless-dev.ml/query",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"api",
+						"chatless-dev",
+						"ml"
 					],
-					"port": "1323",
 					"path": [
 						"query"
 					]
@@ -398,17 +580,18 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query {\n  getPageQuizById(id:\"a3dd3dee-d401-4e53-af2d-fdbdf0d2e672\"){\n   sessionQuizId\n    pageQuiz\n    { id\n    question\n    awnserChoice {\n      id\n      name\n      desc\n    }\n    awnserCorrect {\n      id\n      idAwnser\n      name\n    }\n  }\n  }\n}",
+						"query": "query {\n  getPageQuizById(id:\"310d3993-6ca7-4965-8b6b-abd8a9e1dac7\"){\n   sessionQuizId\n    pageQuiz\n    { id\n    question\n    awnserChoice {\n      id\n      name\n      desc\n    }\n    awnserCorrect {\n      id\n      idAwnser\n      name\n    }\n  }\n  }\n}",
 						"variables": ""
 					}
 				},
 				"url": {
-					"raw": "http://localhost:1323/query",
+					"raw": "http://api.chatless-dev.ml/query",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"api",
+						"chatless-dev",
+						"ml"
 					],
-					"port": "1323",
 					"path": [
 						"query"
 					]
@@ -490,7 +673,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "{\n  allAssignChatByFreelancer(status:\"pending\"){\n    id\n    pageId\n    conversationId\n    freelancerId\n    createdAt\n  }\n}",
+						"query": "{\n  allAssignChatByFreelancer(status:\"pending\"){\n    id\n    pageUID\n    pageId\n    conversationId\n    conversationLoader {\n     senders {\n        id\n        email\n        name\n      }\n      message {\n        id\n        message\n        from {\n          id\n          email\n          name\n        }\n      }\n    }\n    freelancerId\n    createdAt\n    createdBy\n  }\n}",
 						"variables": ""
 					}
 				},
@@ -536,7 +719,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation {\n  acceptAssignChatByFreelancer(id:\"2696143f-be46-485a-8299-0ee21bb33ef9\"){\n    id\n  }\n}",
+						"query": "mutation {\n  acceptAssignChatByFreelancer(id:\"81155539-9210-46e9-8ea2-b390327cc3fb\"){\n    id\n  }\n}",
 						"variables": ""
 					}
 				},
@@ -582,17 +765,18 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query {\n  myPageCountUnreadFacebookByFreelancer {\n    pageID\n    unread\n    picture\n  }\n}",
+						"query": "query {\n  countUnreadAllMyFollowPage\n  myPageCountUnreadByFreelancer {\n    name\n    pageUID\n    unread\n    picture\n  }\n  getMyUserDetail {\n    idCardPhoto\n  followPage {\n        id\n        pageUID\n        chatCount\n        pageLoader {\n          id\n          pageId\n          desc\n          likes\n          socialLoader {\n             id\n             name\n             title\n             image\n          }\n          pageOwner {\n            id\n            username\n            firstname\n            lastname\n            phone\n          }\n        }\n  }\n  }\n  \n}",
 						"variables": ""
 					}
 				},
 				"url": {
-					"raw": "http://localhost:1323/query",
+					"raw": "http://api.chatless-dev.ml/query",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"api",
+						"chatless-dev",
+						"ml"
 					],
-					"port": "1323",
 					"path": [
 						"query"
 					]
@@ -634,7 +818,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "{\n  getConversationsFacebookByFreelancer(pageId:\"264231890283990\",status:\"accept\",label:\"new\"){\n    pageID\n    conversations {\n      id\n      senders {\n        id\n        email\n        name\n      }\n      message {\n        id\n        message\n        from {\n          id\n          email\n          name\n        }\n      }\n      lastMessage\n    }\n  }\n}",
+						"query": "{\n  getConversationsByFreelancer(pageUID:\"3ffc5b55-f355-4145-81b4-563b4c72b8c1\",status:\"accept\",label:\"new\"){\n    id\n    conversationsId\n    message {\n      id\n      typeMessage\n      message\n    }\n    lastUpdate\n    lastMessage {\n      id\n      typeMessage\n      message\n      createdAt\n    }\n  }\n}",
 						"variables": ""
 					}
 				},
@@ -680,7 +864,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "{\n  getConversationFacebookByFreelancer(pageId:\"264231890283990\",id:\"t_2286766214961504\"){\n    id\n      unreadCount\n      messageCount\n      senders {\n        id\n        name\n        email\n      }\n      message {\n        id\n        message\n        from {\n          id\n          name\n          email\n        }\n        createdAt\n      }\n      lastMessage\n      lastUpdate\n  }\n}",
+						"query": "{\n  getPageFollowByPageID(pageID:\"264231890283990\"){\n    introPage {\n      header\n      image\n      description\n    }\n    createdBy\n  }\n  getConversation(conversationId:\"t_2286766214961504\"){\n      conversationsId\n      unreadCount\n      messageCount\n      senders {\n        id\n        name\n        email\n      }\n      message {\n        id\n        message\n        from {\n          id\n          name\n          email\n        }\n        createdAt\n      }\n      lastUpdate\n  }\n}",
 						"variables": ""
 					}
 				},
@@ -726,7 +910,53 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation {\n  sendMessageFacebookByFreelancer(pageId:\"264231890283990\",conversationId:\"t_2286766214961504\",recipientId:\"2890425851077848\",message:\"https://i.imgur.com/GSoZ9a3.jpg\",typeMessage:\"image\"){\n    status\n    messageId\n    recipientId\n  }\n}",
+						"query": "# mutation {\n#   sendMessageFacebookByFreelancer(pageId:\"264231890283990\",conversationId:\"t_2286766214961504\",recipientId:\"2890425851077848\",message:\"https://i.imgur.com/GSoZ9a3.jpg\",typeMessage:\"image\"){\n#     status\n#     messageId\n#     recipientId\n#   }\n# }\nmutation{\n  sendMessageByFreelancer(\n    conversationId: \"t_2286766214961504\"\n    recipientId: \"2890425851077848\"\n    message: \"ทดสอบ5\"\n    typeMessage: \"text\"\n  ){\n    status\n    recipientId\n    messageId\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1323/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "arkPageOwner",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f88302a2-d078-495c-b5b7-2df294bf94d8",
+						"exec": [
+							"pm.test(\"Test get new discover page\", function () {",
+							"   pm.expect(pm.response.text()).to.include(\"messageId\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessTokenFreelancer}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "# mutation {\n#   sendMessageFacebookByFreelancer(pageId:\"264231890283990\",conversationId:\"t_2286766214961504\",recipientId:\"2890425851077848\",message:\"https://i.imgur.com/GSoZ9a3.jpg\",typeMessage:\"image\"){\n#     status\n#     messageId\n#     recipientId\n#   }\n# }\nmutation{\n  sendMessageByFreelancer(\n    conversationId: \"t_2286766214961504\"\n    recipientId: \"2890425851077848\"\n    message: \"ทดสอบ5\"\n    typeMessage: \"text\"\n  ){\n    status\n    recipientId\n    messageId\n  }\n}",
 						"variables": ""
 					}
 				},
@@ -864,7 +1094,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation {\n  updateLabelByFreelancer(id:\"a3a72045-43c6-4745-a949-dfbc4ff22ba7\",label:\"old\"){\n    id\n  }\n}",
+						"query": "mutation {\n  updateLabelByFreelancer(id:\"4f90e476-13ef-49e5-b920-b577150daf94\",label:\"end\"){\n    id\n  }\n} \n# {\n# allLabel {\n#   name\n#   title\n# }\n# }\n",
 						"variables": ""
 					}
 				},
@@ -1113,7 +1343,7 @@
 			"response": []
 		},
 		{
-			"name": "getMyAccountDetail",
+			"name": "getMyUserDetail",
 			"event": [
 				{
 					"listen": "test",
@@ -1279,6 +1509,38 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "mutation {\n  updatePersonalData(input:{\n    name:\"First Freelancer 1\",\n    email:\"first.freelancer@gmail.com\",\n    phone:\"0987654321\",\n    gender:\"Male\",\n    photo:\"image.png\",\n    birthDay:\"15/01/2563\",\n    idCard:\"1234567890123\"\n  })\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1323/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateUserSocialCategory",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessTokenFreelancer}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\n  updateUserSocialCategory(input:[{\n    socialId:\"25d6132b-0b7d-42d7-b804-b37404b54a7f\"\n    category:[\"b8b34621-5e58-4c41-beb1-1e5bfb799611\"]\n  }])\n}\n",
 						"variables": ""
 					}
 				},

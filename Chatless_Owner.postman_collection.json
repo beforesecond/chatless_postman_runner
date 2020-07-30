@@ -38,17 +38,18 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation {\n  login(input:{email:\"first.owner@gmail.com\",password:\"1234567\",grantType:\"password\"}) {\n    accessToken\n    tokenType\n    expiresIn\n    refreshToken\n    userId\n  }\n}",
+						"query": "mutation {\n  login(input:{email:\"first.owner@gmail.com\",password:\"1234567\",grantType:\"password\",role:\"owner\"}) {\n    accessToken\n    tokenType\n    expiresIn\n    refreshToken\n    userId\n  }\n}",
 						"variables": ""
 					}
 				},
 				"url": {
-					"raw": "http://localhost:1323/query",
+					"raw": "http://api.chatless-dev.ml/query",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"api",
+						"chatless-dev",
+						"ml"
 					],
-					"port": "1323",
 					"path": [
 						"query"
 					]
@@ -138,12 +139,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:1323/query",
+					"raw": "http://api.chatless-dev.ml/query",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"api",
+						"chatless-dev",
+						"ml"
 					],
-					"port": "1323",
 					"path": [
 						"query"
 					]
@@ -155,14 +157,28 @@
 			"name": "allPage",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "{\n  getMyUserDetail {\n    facebook {\n     data {\n      id\n      name\n      category\n      picture\n     }\n    } \n  }\n}",
+						"variables": ""
+					}
+				},
 				"url": {
-					"raw": "http://localhost:1323/query",
+					"raw": "http://api.chatless-dev.ml/query",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"api",
+						"chatless-dev",
+						"ml"
 					],
-					"port": "1323",
 					"path": [
 						"query"
 					]
@@ -199,7 +215,62 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation {\n  createPage(input:{\n    pageId:\"264231890283990\",\n    introPage:[{\n      header:\"General Cartoon\",\n      description: \"เว็บอ่านการ์ตูน\",\n      image:\"test.png\"\n    }],\n    quiz:[{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    }],\n    likes: 0,\n    category: [\"b8b34621-5e58-4c41-beb1-1e5bfb799611\"]\n    budget: 1000,\n    numberOfQuiz: 10\n    passScore: 7\n    desc: \"\"\n    picture: []\n    cover: \"\"\n  }){\n    id\n    pageId\n    passScore\n  }\n}",
+						"query": "mutation {\n  createPage(input:{\n    pageId:\"264231890283990\",\n    socialId:\"d5b45566-35c5-408c-bca8-7876013b1c5c\",\n    introPage:[{\n      header:\"Generalcartoon\",\n      description: \"cartoon\",\n      image:\"test.png\"\n    }],\n    quiz:[{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    }],\n    likes: 0,\n    category: [\"c6b49b0d-795a-4d2a-8d51-26d9e51bef4e\"]\n    budget: 1000,\n    numberOfQuiz: 10\n    passScore: 7\n    desc: \"\"\n    picture: []\n    cover: \"\"\n  }){\n    uuid\n    pageId\n    passScore\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://api.chatless-dev.ml/query",
+					"protocol": "http",
+					"host": [
+						"api",
+						"chatless-dev",
+						"ml"
+					],
+					"path": [
+						"query"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updatePage",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f5bee483-1ac7-4e70-b828-2c07faa70674",
+						"exec": [
+							"pm.test(\"Test create page\", function () {",
+							"   var jsonData = pm.response.json();",
+							"    pm.expect(pm.response.text()).to.include(\"id\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{accessToken}}"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\n  updatePage(input:{\n    pageId:\"264231890283990\",\n     step:\"6\",\n    # introPage:[{\n    #   header:\"Firstnaruto Bot test\",\n    #   description: \"bot\",\n    #   image:\"bot_line.png\"\n    # }],\n    \n    # likes: 0,\n    # category: [\"b8b34621-5e58-4c41-beb1-1e5bfb799611\"]\n    # budget: 1000,\n    # numberOfQuiz: 10\n    # passScore: 7\n    # desc: \"\"\n    # picture: []\n    # cover: \"\"\n    quiz:[{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    }],\n  }){\n    uuid\n    pageId\n    passScore\n  }\n}",
 						"variables": ""
 					}
 				},
@@ -300,7 +371,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "{\n  getConversationsFacebook(pageId:\"264231890283990\",label:\"new\")\n  {\n    name\n    pageID\n    conversations {\n      id\n      conversationsId\n      unreadCount\n      messageCount\n      senders {\n        id\n        name\n        email\n      }\n      message {\n        id\n        message\n        from {\n          id\n          name\n          email\n        }\n        createdAt\n      }\n      lastMessage\n      lastUpdate\n    }\n  }\n  \n}",
+						"query": "{\n  getConversationsByOwner(pageUID:\"e57452d3-502f-43df-8f3f-c9613f042959\",status:\"new\",label:\"new\"){\n    id\n    senders {\n      id\n      name\n      email\n      picture\n    }\n    message {\n      message\n      typeMessage\n      from {\n        id\n        email\n        name\n        picture\n      }\n    }\n    unreadCount\n    messageCount\n    lastMessage {\n      id\n      message\n      from {\n        id\n        email\n        name\n        picture\n      }\n    }\n    \n  }\n  \n}",
 						"variables": ""
 					}
 				},
@@ -366,6 +437,53 @@
 			"response": []
 		},
 		{
+			"name": "replyArkFromFreelancer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4c4a7817-86ae-498a-8d17-ea5398557e6c",
+						"exec": [
+							"pm.test(\"Test get for conversation\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(pm.response.text()).to.include(\"message\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{accessToken}}"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\n  replyQuestionFromFreelancer(\n    arkId: \"0810f643-cfc0-4b8c-9d2d-0b7b1bffe16a\"\n    message: \"ตอบแทน\"\n    typeMessage: \"text\"\n    )\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1323/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "sendMessageCustomerFanpage",
 			"event": [
 				{
@@ -394,7 +512,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation{\n  sendMessageFacebook(pageId:\"264231890283990\",conversationId:\"t_2286766214961504\",recipientId:\"2890425851077848\",message:\"ทักครับ\",typeMessage:\"text\"){\n    status\n    recipientId\n    messageId\n  }\n}",
+						"query": "mutation{\n  sendMessageByOwner(\n    conversationId: \"t_2286766214961504\"\n    recipientId: \"2890425851077848\"\n    message: \"ทดสอบ1\"\n    typeMessage: \"text\"\n  ){\n    status\n    recipientId\n    messageId\n  }\n}",
 						"variables": ""
 					}
 				},
@@ -441,7 +559,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "{\n  allMyFreelancerList(pageUID:\"a3dd3dee-d401-4e53-af2d-fdbdf0d2e672\") {\n    id\n    name\n    phone\n    photo\n    score\n  }\n}",
+						"query": "{\n  allMyFreelancerList(pageUID:\"3ffc5b55-f355-4145-81b4-563b4c72b8c1\") {\n    id\n    name\n    phone\n    photo\n    score\n  }\n}",
 						"variables": ""
 					}
 				},
@@ -488,7 +606,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation {\n  createAssignChatToFreelancer(pageId:\"264231890283990\",freelancerId:\"6cbb6f0e-ef32-42ca-b8f5-78dd9772cc8a\",conversationId:\"t_2286766214961504\"){\n    id\n  }\n}",
+						"query": "mutation {\n  createAssignChatToFreelancer(pageUID:\"3ffc5b55-f355-4145-81b4-563b4c72b8c1\",freelancerId:\"6a0e5224-3a2c-4b27-a236-5866d0ea35cf\",conversationId:\"t_2286766214961504\"){\n    id\n  }\n}",
 						"variables": ""
 					}
 				},
@@ -723,7 +841,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "{\n  myWallet {\n    balance\n    income\n    expense\n  }\n  allMyTransactionPayment{\n    id\n    amount\n    status\n    paymentType\n    bankAccountId\n    bankAccountLoader {\n      id\n      branch\n      bankLoader {\n        id\n        name\n        shortName\n      }\n      accountNumber\n    }\n    recieverLoader {\n       id\n      name\n      phone\n      photo\n    }\n    createByLoader {\n        id\n      name\n      phone\n      photo\n    }\n    \n  }\n}",
+						"query": "{\n  myWallet {\n    balance\n    income\n    expense\n    thisweek\n    lastweek\n  }\n  allMyTransactionPayment{\n    id\n    amount\n    status\n    paymentType\n    bankAccountId\n    bankAccountLoader {\n      id\n      branch\n      bankLoader {\n        id\n        name\n        shortName\n      }\n      accountNumber\n    }\n    recieverLoader {\n       id\n      name\n      phone\n      photo\n    }\n    createByLoader {\n        id\n      name\n      phone\n      photo\n    }\n    \n  }\n}",
 						"variables": ""
 					}
 				},
@@ -770,7 +888,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "{\n  allMyBankAccount {\n    id\n    bankID\n    bankLoader {\n      id\n      name\n      shortName\n      picture\n    }\n    branch\n    accountName\n    accountNumber\n  }\n}",
+						"query": "{\n  allBankBrand{\n    id\n    name\n  shortName\n  picture\n  }\n  allMyBankAccount {\n    id\n    bankID\n    bankLoader {\n      id\n      name\n      shortName\n      picture\n    }\n    branch\n    accountName\n    accountNumber\n  }\n}",
 						"variables": ""
 					}
 				},
@@ -817,7 +935,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation {\n  addBankAccount(bankID:\"5b60a21a-4f8e-46ef-bf0e-9b2ec9a41db5\",\n    branch:\"Siam\",\n    accountName:\"First Freelancer\",\n    accountNumber:\"1234567890\"){\n  \t\tid\n   }\n}",
+						"query": "mutation {\n  addBankAccount(bankID:\"618ec479-ef0f-4b5f-bebe-aa622f155657\",\n    branch:\"Siam\",\n    accountName:\"First Freelancer\",\n    accountNumber:\"1234567890\"){\n  \t\tid\n   }\n}",
 						"variables": ""
 					}
 				},
@@ -864,7 +982,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation {\n  deposit(bankAccountId:\"f50113ad-6815-4cc8-9aae-b9d75e3e2e00\",amount:1234,slip:\"slip.png\",note:\"-\")\n}",
+						"query": "mutation {\n  deposit(bankAccountId:\"31d59431-204d-4e93-ac52-4c2dea8787bd\",amount:123,slip:\"slip.png\",note:\"-\")\n}",
 						"variables": ""
 					}
 				},
@@ -911,7 +1029,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation {\n  mangeDeposit(id:\"01109322-a183-49b3-98b6-992abc25a5a3\",status:\"approve\")\n}",
+						"query": "mutation {\n  mangeDeposit(id:\"835c6a89-b4e4-4cdf-8864-f84f3aaa2550\",status:\"approve\")\n}",
 						"variables": ""
 					}
 				},
@@ -1005,7 +1123,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation {\n  updateAccountDetail(input:{\n     name: \"First Owner Admin\",\n     email: \"first.owner@gmail.com\",\n     phone: \"0987654322\",\n  })\n}",
+						"query": "mutation {\n  updateAccountDetail(input:{\n     name: \"First Owner Admin\",\n     email: \"first.owner@gmail.com\",\n     phone: \"0987654322\",\n     password:\"1234567\",\n     confirmPassword:\"1234567\"\n  })\n}",
 						"variables": ""
 					}
 				},
@@ -1052,7 +1170,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "{\n  allMyPage{\n    id\n    introPage {\n      header      \n      description\n      image\n    }\n    category\n    categoryLoader {\n      id\n      title\n      name\n      image\n    }\n    followersCount\n    followers {\n      id\n      name\n      photo\n     \tusername\n      firstname\n      lastname\n      phone\n      score\n    }\n    facebookConversation {\n      name\n    pageID\n    conversations {\n      id\n      conversationsId\n      unreadCount\n      messageCount\n      senders {\n        id\n        name\n        email\n        picture\n      }\n      message {\n        id\n        message\n        from {\n          id\n          name\n          email\n        }\n        createdAt\n      }\n      lastMessage\n      lastUpdate\n    }\n  }\n  }\n}",
+						"query": "{\n  allMyPage{\n    uuid\n    introPage {\n      header      \n      description\n      image\n    }\n    category\n    categoryLoader {\n      id\n      title\n      name\n      image\n    }\n    followersCount\n    followers {\n      id\n      name\n      photo\n     \tusername\n      firstname\n      lastname\n      phone\n      score\n    }\n    conversation {\n      name\n    pageID\n    conversations {\n      id\n      conversationsId\n      unreadCount\n      messageCount\n      senders {\n        id\n        name\n        email\n        picture\n      }\n      message {\n        id\n        message\n        from {\n          id\n          name\n          email\n        }\n        createdAt\n      }\n      lastMessage {\n        id\n        message\n        typeMessage\n      }\n      lastUpdate\n    }\n  }\n  }\n}",
 						"variables": ""
 					}
 				},
@@ -1099,7 +1217,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "{\n  allMyFreelancerList(pageUID:\"a3dd3dee-d401-4e53-af2d-fdbdf0d2e672\") {\n    id\n    name\n    phone\n    photo\n    score\n  }\n}",
+						"query": "{\n  allMyFreelancerList(pageUID:\"e57452d3-502f-43df-8f3f-c9613f042959\") {\n    id\n    name\n    phone\n    photo\n    score\n  }\n}",
 						"variables": ""
 					}
 				},
@@ -1193,7 +1311,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation {\n  removeFreelancer(pageUID:\"a3dd3dee-d401-4e53-af2d-fdbdf0d2e672\",freelancerId:\"58c1af89-6dff-45e8-b1b4-82c2e4d3e6c5\")\n}",
+						"query": "mutation {\n  removeFreelancer(pageUID:\"a3dd3dee-d401-4e53-af2d-fdbdf0d2e672\",freelancerId:\"6cbb6f0e-ef32-42ca-b8f5-78dd9772cc8a\")\n}",
 						"variables": ""
 					}
 				},
@@ -1507,7 +1625,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation {\n  updatePageDetail(pageUID:\"a3dd3dee-d401-4e53-af2d-fdbdf0d2e672\",passScore:8)\n}",
+						"query": "mutation {\n  updatePageDetail\n  (pageUID:\"a3dd3dee-d401-4e53-af2d-fdbdf0d2e672\",\n  passScore:8,\n  category:[\"b8b34621-5e58-4c41-beb1-1e5bfb799611\"],\n  budget:500)\n}",
 						"variables": ""
 					}
 				},
