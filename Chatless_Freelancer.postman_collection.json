@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "c9827129-284c-475a-9eed-059a889117da",
+		"_postman_id": "9cd6a965-966d-4578-8f1a-6d386336276e",
 		"name": "Chatless_Freelancer",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -119,7 +119,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation {\n  createAccount(input:{\n    name:\"First Freelancer\",\n    phone:\"0810149181\",\n    email:\"first.freelancer@gmail.com\",\n    password:\"1234567\",  \n    role:\"freelancer\"\n  }){\n    accessToken\n    tokenType\n    expiresIn\n    refreshToken\n    userId\n  }\n}",
+						"query": "mutation {\n  createAccount(input:{\n    name:\"First Owner\",\n    phone:\"0810149181\",\n    email:\"first.owner@gmail.com\",\n    password:\"1234567\",  \n    role:\"owner\"\n  }){\n    accessToken\n    tokenType\n    expiresIn\n    refreshToken\n    userId\n  }\n}",
 						"variables": ""
 					}
 				},
@@ -910,7 +910,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "# mutation {\n#   sendMessageFacebookByFreelancer(pageId:\"264231890283990\",conversationId:\"t_2286766214961504\",recipientId:\"2890425851077848\",message:\"https://i.imgur.com/GSoZ9a3.jpg\",typeMessage:\"image\"){\n#     status\n#     messageId\n#     recipientId\n#   }\n# }\nmutation{\n  sendMessageByFreelancer(\n    conversationId: \"t_2286766214961504\"\n    recipientId: \"2890425851077848\"\n    message: \"ทดสอบ5\"\n    typeMessage: \"text\"\n  ){\n    status\n    recipientId\n    messageId\n  }\n}",
+						"query": "mutation{\n  sendMessageByFreelancer(\n    conversationId: \"t_2286766214961504\"\n    recipientId: \"2890425851077848\"\n    message: \"ทดสอบ5\"\n    typeMessage: \"text\"\n  ){\n    status\n    recipientId\n    messageId\n  }\n}",
 						"variables": ""
 					}
 				},
@@ -956,7 +956,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "# mutation {\n#   sendMessageFacebookByFreelancer(pageId:\"264231890283990\",conversationId:\"t_2286766214961504\",recipientId:\"2890425851077848\",message:\"https://i.imgur.com/GSoZ9a3.jpg\",typeMessage:\"image\"){\n#     status\n#     messageId\n#     recipientId\n#   }\n# }\nmutation{\n  sendMessageByFreelancer(\n    conversationId: \"t_2286766214961504\"\n    recipientId: \"2890425851077848\"\n    message: \"ทดสอบ5\"\n    typeMessage: \"text\"\n  ){\n    status\n    recipientId\n    messageId\n  }\n}",
+						"query": "mutation {\n  arkPageOwner(conversationId:\"t_2286766214961504\",message:\"ถามหน่อยครับ\")\n}",
 						"variables": ""
 					}
 				},
@@ -1558,6 +1558,5 @@
 			},
 			"response": []
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }

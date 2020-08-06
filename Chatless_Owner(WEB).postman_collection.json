@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "94fce8d5-51b9-484f-a404-f2b0020fcb36",
-		"name": "Chatless_Owner",
+		"_postman_id": "ed85d487-5487-42be-8d73-70e5bd25d316",
+		"name": "Chatless_Owner(WEB)",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -11,12 +11,12 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "e4e5d3a3-5543-4f7d-ace5-b5c3dd989948",
+						"id": "d0db90ac-b6d4-453c-b4d3-a5544fffa663",
 						"exec": [
 							"pm.test(\"Test login\", function () {",
 							"   var jsonData = pm.response.json();",
 							"    pm.expect(pm.response.text()).to.include(\"accessToken\");",
-							"    pm.environment.set(\"accessToken\",jsonData.data.login.accessToken); ",
+							"    pm.environment.set(\"accessTokenOwnerWeb\",jsonData.data.login.accessToken); ",
 							"});",
 							"",
 							"",
@@ -63,7 +63,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "41dde721-26d2-4703-a6f6-237f15b1ab65",
+						"id": "fed46f01-9ffd-4693-9545-a963c3434a23",
 						"exec": [
 							"pm.test(\"Test select role owner\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -79,7 +79,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer {{accessToken}}",
+						"value": "Bearer {{accessTokenOwnerWeb}}",
 						"type": "text"
 					}
 				],
@@ -110,7 +110,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "b8139d14-00ac-43c4-8ee4-3a4a51805a88",
+						"id": "9e316e44-13cc-49fa-aab8-5cbf7baa2c27",
 						"exec": [
 							"pm.test(\"Test get social method\", function () {",
 							"   var jsonData = pm.response.json();",
@@ -127,7 +127,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer {{accessToken}}",
+						"value": "Bearer {{accessTokenOwnerWeb}}",
 						"type": "text"
 					}
 				],
@@ -160,7 +160,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer {{accessToken}}",
+						"value": "Bearer {{accessTokenOwnerWeb}}",
 						"type": "text"
 					}
 				],
@@ -192,7 +192,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "20025898-ca24-4abb-a7c3-d93459bcb256",
+						"id": "bcc2a6c6-fea5-4a28-8508-dd2b3551b771",
 						"exec": [
 							"pm.test(\"Test create page\", function () {",
 							"   var jsonData = pm.response.json();",
@@ -208,7 +208,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer {{accessToken}}",
+						"value": "Bearer {{accessTokenOwnerWeb}}",
 						"type": "text"
 					}
 				],
@@ -247,7 +247,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "f5bee483-1ac7-4e70-b828-2c07faa70674",
+						"id": "529c08ca-ab89-4c2b-9645-efc3e12bbdd3",
 						"exec": [
 							"pm.test(\"Test create page\", function () {",
 							"   var jsonData = pm.response.json();",
@@ -264,7 +264,7 @@
 					{
 						"key": "Authorization",
 						"type": "text",
-						"value": "Bearer {{accessToken}}"
+						"value": "Bearer {{accessTokenOwnerWeb}}"
 					}
 				],
 				"body": {
@@ -302,7 +302,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "5f0a959b-c426-44b6-be82-fddf0349af81",
+						"id": "878cc0bc-331a-40ef-bd92-c75bac733c5c",
 						"exec": [
 							"pm.test(\"Test get for main screen owner\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -318,7 +318,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer {{accessToken}}",
+						"value": "Bearer {{accessTokenOwnerWeb}}",
 						"type": "text"
 					}
 				],
@@ -350,7 +350,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "0fcdf0fd-8d14-4809-9014-c57161c8bc03",
+						"id": "e80b2634-b006-45a8-95cb-13c11e3c0fb8",
 						"exec": [
 							"pm.test(\"Test get for conversation home fanpage\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -366,7 +366,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer {{accessToken}}",
+						"value": "Bearer {{accessTokenOwnerWeb}}",
 						"type": "text"
 					}
 				],
@@ -398,7 +398,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "2cf89a34-15f2-49da-889c-1a939e70c6de",
+						"id": "ab16e352-79d5-4a99-a014-ec5c0731a16a",
 						"exec": [
 							"pm.test(\"Test get for conversation\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -414,7 +414,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer {{accessToken}}",
+						"value": "Bearer {{accessTokenOwnerWeb}}",
 						"type": "text"
 					}
 				],
@@ -445,7 +445,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "4c4a7817-86ae-498a-8d17-ea5398557e6c",
+						"id": "d84c47fb-b95d-4f6f-bb07-070a82a04b09",
 						"exec": [
 							"pm.test(\"Test get for conversation\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -462,7 +462,7 @@
 					{
 						"key": "Authorization",
 						"type": "text",
-						"value": "Bearer {{accessToken}}"
+						"value": "Bearer {{accessTokenOwnerWeb}}"
 					}
 				],
 				"body": {
@@ -492,7 +492,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "0b353385-3e3c-439b-a906-e855205ad589",
+						"id": "513eefc8-a750-4eb9-abf4-ff4c390d9bcc",
 						"exec": [
 							"pm.test(\"Test get for conversation\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -508,7 +508,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer {{accessToken}}",
+						"value": "Bearer {{accessTokenOwnerWeb}}",
 						"type": "text"
 					}
 				],
@@ -539,7 +539,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "a99bfff5-78ed-49ef-bed4-d6186b8ac3bd",
+						"id": "c033b580-3d4a-498c-a56e-7bc1ba8d0b38",
 						"exec": [
 							"pm.test(\"Test get my freelancerlist\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -555,7 +555,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer {{accessToken}}",
+						"value": "Bearer {{accessTokenOwnerWeb}}",
 						"type": "text"
 					}
 				],
@@ -586,7 +586,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "b8b83de3-e903-4bff-806b-841185470441",
+						"id": "a8581672-f139-43a3-beb4-d0075714eec9",
 						"exec": [
 							"pm.test(\"Test get my freelancerlist\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -602,7 +602,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer {{accessToken}}",
+						"value": "Bearer {{accessTokenOwnerWeb}}",
 						"type": "text"
 					}
 				],
@@ -633,7 +633,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "2b7a1633-cd3d-4abd-944a-2d391f01b2fe",
+						"id": "4e7aa58e-b4a4-426d-a9b5-6fbd56e379e0",
 						"exec": [
 							"pm.test(\"Test get my freelancerlist\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -649,7 +649,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer {{accessToken}}",
+						"value": "Bearer {{accessTokenOwnerWeb}}",
 						"type": "text"
 					}
 				],
@@ -680,7 +680,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "0c9de1ed-5d02-4b41-8655-60bb7c207df5",
+						"id": "6707fb64-5e1d-4903-8cc3-8f10840799dd",
 						"exec": [
 							"pm.test(\"Test get my freelancerlist\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -696,7 +696,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer {{accessToken}}",
+						"value": "Bearer {{accessTokenOwnerWeb}}",
 						"type": "text"
 					}
 				],
@@ -727,7 +727,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "df695653-f1a5-48ab-81af-8a3cb0e3c66b",
+						"id": "c979fe36-36da-4f5a-a0a0-ed1c341bc283",
 						"exec": [
 							"pm.test(\"Test get my freelancerlist\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -743,7 +743,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer {{accessToken}}",
+						"value": "Bearer {{accessTokenOwnerWeb}}",
 						"type": "text"
 					}
 				],
@@ -774,7 +774,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "70d6b510-aedc-41e1-bfa3-c5f1bc973b95",
+						"id": "7cf88c9f-c996-4b44-aa9a-54142e2ef28c",
 						"exec": [
 							"pm.test(\"Test get my freelancerlist\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -790,7 +790,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer {{accessToken}}",
+						"value": "Bearer {{accessTokenOwnerWeb}}",
 						"type": "text"
 					}
 				],
@@ -821,7 +821,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "4f439f2c-6bd0-4851-82b0-f0a2fe65245f",
+						"id": "2be5752a-273f-4427-8fee-39399fff1b70",
 						"exec": [
 							"pm.test(\"Test get my freelancerlist\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -837,7 +837,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer {{accessToken}}",
+						"value": "Bearer {{accessTokenOwnerWeb}}",
 						"type": "text"
 					}
 				],
@@ -868,7 +868,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "55e09994-0ff0-4df0-ae0f-f9fec41231a8",
+						"id": "f15a79ce-3742-4b16-88bb-cf2734287d80",
 						"exec": [
 							"pm.test(\"Test get my freelancerlist\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -884,7 +884,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer {{accessToken}}",
+						"value": "Bearer {{accessTokenOwnerWeb}}",
 						"type": "text"
 					}
 				],
@@ -915,7 +915,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "26849400-393f-4847-843e-6445ecdb5d7c",
+						"id": "2935c6d4-c1dd-4335-b669-64fb828c2d58",
 						"exec": [
 							"pm.test(\"Test get my freelancerlist\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -931,7 +931,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer {{accessToken}}",
+						"value": "Bearer {{accessTokenOwnerWeb}}",
 						"type": "text"
 					}
 				],
@@ -962,7 +962,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "d20915bc-2086-4468-a249-2ef60ad2a0ba",
+						"id": "5867c94d-eddd-4d1d-a080-0638bee16cb7",
 						"exec": [
 							"pm.test(\"Test get my freelancerlist\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -978,7 +978,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer {{accessToken}}",
+						"value": "Bearer {{accessTokenOwnerWeb}}",
 						"type": "text"
 					}
 				],
@@ -1009,7 +1009,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "acaecd1b-5a9b-4a3d-930a-7a2ce7baa2d1",
+						"id": "890a9bc5-4db8-4076-ba4a-ed6dd192151a",
 						"exec": [
 							"pm.test(\"Test get my freelancerlist\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -1025,7 +1025,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer {{accessToken}}",
+						"value": "Bearer {{accessTokenOwnerWeb}}",
 						"type": "text"
 					}
 				],
@@ -1056,7 +1056,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "b97794ee-6749-4aa1-b666-f9e103a15027",
+						"id": "129f99cc-aaaf-4c05-a930-fa47a19fd874",
 						"exec": [
 							"pm.test(\"Test get my freelancerlist\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -1072,7 +1072,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer {{accessToken}}",
+						"value": "Bearer {{accessTokenOwnerWeb}}",
 						"type": "text"
 					}
 				],
@@ -1103,7 +1103,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "8583ef5b-791e-411d-a653-eef1632ba65c",
+						"id": "7560cdce-0e14-4de1-8f1e-4b49e6d9cfc8",
 						"exec": [
 							"pm.test(\"Test get my freelancerlist\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -1119,7 +1119,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer {{accessToken}}",
+						"value": "Bearer {{accessTokenOwnerWeb}}",
 						"type": "text"
 					}
 				],
@@ -1150,7 +1150,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "9e4cb641-f647-4609-b32f-e67239d77788",
+						"id": "f03b89bf-01de-4732-a6c0-f3b94c637410",
 						"exec": [
 							"pm.test(\"Test get my freelancerlist\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -1166,7 +1166,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer {{accessToken}}",
+						"value": "Bearer {{accessTokenOwnerWeb}}",
 						"type": "text"
 					}
 				],
@@ -1197,7 +1197,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "977e8872-bb47-426c-82fe-ea31214434f5",
+						"id": "f820c6d3-1eff-4062-a18c-7b3ed0c7c29a",
 						"exec": [
 							"pm.test(\"Test get my freelancerlist\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -1213,7 +1213,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer {{accessToken}}",
+						"value": "Bearer {{accessTokenOwnerWeb}}",
 						"type": "text"
 					}
 				],
@@ -1244,7 +1244,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "e8254702-401b-4d75-b86c-8c22d71f75a7",
+						"id": "2ca74684-e755-418d-bfef-c993b2f6f68b",
 						"exec": [
 							"pm.test(\"Test get my freelancerlist\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -1260,7 +1260,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer {{accessToken}}",
+						"value": "Bearer {{accessTokenOwnerWeb}}",
 						"type": "text"
 					}
 				],
@@ -1291,7 +1291,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "a0fd6a73-d544-4b2b-ab0c-d38c54770bdd",
+						"id": "4bab2846-ca8b-4ac6-a2fa-1dc36517fbcb",
 						"exec": [
 							"pm.test(\"Test get my freelancerlist\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -1307,7 +1307,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer {{accessToken}}",
+						"value": "Bearer {{accessTokenOwnerWeb}}",
 						"type": "text"
 					}
 				],
@@ -1338,7 +1338,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "ef34287b-757a-452c-8c97-da9177c2127f",
+						"id": "6d303653-8cc7-4ab3-9ef6-deb9f840fc60",
 						"exec": [
 							"pm.test(\"Test get my freelancerlist\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -1354,7 +1354,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer {{accessToken}}",
+						"value": "Bearer {{accessTokenOwnerWeb}}",
 						"type": "text"
 					}
 				],
@@ -1385,7 +1385,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "86eda8e2-379b-4454-847d-5a86aa3b3f7c",
+						"id": "68063ff3-3dc8-44d7-a702-c5ac632cd865",
 						"exec": [
 							"pm.test(\"Test get my freelancerlist\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -1401,7 +1401,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer {{accessToken}}",
+						"value": "Bearer {{accessTokenOwnerWeb}}",
 						"type": "text"
 					}
 				],
@@ -1432,7 +1432,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "a96fcbd5-aae2-48df-905d-b33ee76ae4fb",
+						"id": "a206ed4c-c433-4ded-9fc1-daa22e9fe16d",
 						"exec": [
 							"pm.test(\"Test get my freelancerlist\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -1448,7 +1448,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer {{accessToken}}",
+						"value": "Bearer {{accessTokenOwnerWeb}}",
 						"type": "text"
 					}
 				],
@@ -1479,7 +1479,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "a2ffef6a-fa26-48c4-87a3-f77c230e94a1",
+						"id": "9ca4138a-5085-4d26-bbbe-3a418d6bf9dd",
 						"exec": [
 							"pm.test(\"Test get my freelancerlist\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -1495,7 +1495,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer {{accessToken}}",
+						"value": "Bearer {{accessTokenOwnerWeb}}",
 						"type": "text"
 					}
 				],
@@ -1526,7 +1526,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "955b7e01-96ae-45d0-b658-91c545284b11",
+						"id": "46556760-fb56-4a89-95b2-41cf9d4b0ec6",
 						"exec": [
 							"pm.test(\"Test get my freelancerlist\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -1542,7 +1542,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer {{accessToken}}",
+						"value": "Bearer {{accessTokenOwnerWeb}}",
 						"type": "text"
 					}
 				],
@@ -1573,7 +1573,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "dfa50f63-91bd-4321-882e-af140030306f",
+						"id": "2a29c6a0-ae8d-4842-be87-03fc8efaa33f",
 						"exec": [
 							"pm.test(\"Test get my freelancerlist\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -1589,7 +1589,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer {{accessToken}}",
+						"value": "Bearer {{accessTokenOwnerWeb}}",
 						"type": "text"
 					}
 				],
@@ -1621,7 +1621,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer {{accessToken}}",
+						"value": "Bearer {{accessTokenOwnerWeb}}",
 						"type": "text"
 					}
 				],
@@ -1646,5 +1646,6 @@
 			},
 			"response": []
 		}
-	]
+	],
+	"protocolProfileBehavior": {}
 }
