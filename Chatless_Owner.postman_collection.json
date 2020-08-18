@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "94fce8d5-51b9-484f-a404-f2b0020fcb36",
+		"_postman_id": "40f2b2d5-df18-4a5f-b179-bff67ca006ed",
 		"name": "Chatless_Owner",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -11,7 +11,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "e4e5d3a3-5543-4f7d-ace5-b5c3dd989948",
+						"id": "40e34a38-91a2-453e-aed3-e823301452ae",
 						"exec": [
 							"pm.test(\"Test login\", function () {",
 							"   var jsonData = pm.response.json();",
@@ -43,15 +43,9 @@
 					}
 				},
 				"url": {
-					"raw": "http://api.chatless-dev.ml/query",
-					"protocol": "http",
+					"raw": "{{endpoint}}",
 					"host": [
-						"api",
-						"chatless-dev",
-						"ml"
-					],
-					"path": [
-						"query"
+						"{{endpoint}}"
 					]
 				}
 			},
@@ -63,7 +57,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "41dde721-26d2-4703-a6f6-237f15b1ab65",
+						"id": "80eb4673-0d9d-45b7-8fbf-ad6ed3ccc11d",
 						"exec": [
 							"pm.test(\"Test select role owner\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -91,14 +85,9 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:1323/query",
-					"protocol": "http",
+					"raw": "{{endpoint}}",
 					"host": [
-						"localhost"
-					],
-					"port": "1323",
-					"path": [
-						"query"
+						"{{endpoint}}"
 					]
 				}
 			},
@@ -110,7 +99,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "b8139d14-00ac-43c4-8ee4-3a4a51805a88",
+						"id": "57e14028-0227-4138-9c8d-dc9f88363c9d",
 						"exec": [
 							"pm.test(\"Test get social method\", function () {",
 							"   var jsonData = pm.response.json();",
@@ -139,115 +128,21 @@
 					}
 				},
 				"url": {
-					"raw": "http://api.chatless-dev.ml/query",
-					"protocol": "http",
+					"raw": "{{endpoint}}",
 					"host": [
-						"api",
-						"chatless-dev",
-						"ml"
-					],
-					"path": [
-						"query"
+						"{{endpoint}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "allPage",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer {{accessToken}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "{\n  getMyUserDetail {\n    facebook {\n     data {\n      id\n      name\n      category\n      picture\n     }\n    } \n  }\n}",
-						"variables": ""
-					}
-				},
-				"url": {
-					"raw": "http://api.chatless-dev.ml/query",
-					"protocol": "http",
-					"host": [
-						"api",
-						"chatless-dev",
-						"ml"
-					],
-					"path": [
-						"query"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "createPage",
+			"name": "createAccessTokenFacebook",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "20025898-ca24-4abb-a7c3-d93459bcb256",
-						"exec": [
-							"pm.test(\"Test create page\", function () {",
-							"   var jsonData = pm.response.json();",
-							"    pm.expect(pm.response.text()).to.include(\"id\");",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer {{accessToken}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "mutation {\n  createPage(input:{\n    pageId:\"264231890283990\",\n    socialId:\"bfa21d1a-61a1-4c91-ae5b-5c39d2ed3f37\",\n    introPage:[{\n      header:\"Generalcartoon\",\n      description: \"cartoon\",\n      image:\"test.png\"\n    }],\n    quiz:[{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    }],\n    likes: 0,\n    category: [\"a4bff431-32a9-44d5-a15a-17bed794c544\"]\n    budget: 1000,\n    numberOfQuiz: 10\n    passScore: 7\n    desc: \"\"\n    picture: []\n    cover: \"\"\n  }){\n    uuid\n    pageId\n    passScore\n  }\n}",
-						"variables": ""
-					}
-				},
-				"url": {
-					"raw": "http://api.chatless-dev.ml/query",
-					"protocol": "http",
-					"host": [
-						"api",
-						"chatless-dev",
-						"ml"
-					],
-					"path": [
-						"query"
-					],
-					"query": [
-						{
-							"key": "",
-							"value": null,
-							"disabled": true
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "updatePage",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "f5bee483-1ac7-4e70-b828-2c07faa70674",
+						"id": "241f05da-7daa-4cfd-83d6-1892b4ba44da",
 						"exec": [
 							"pm.test(\"Test create page\", function () {",
 							"   var jsonData = pm.response.json();",
@@ -270,20 +165,286 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation {\n  updatePage(input:{\n    pageId:\"264231890283990\",\n     step:\"6\",\n    # introPage:[{\n    #   header:\"Firstnaruto Bot test\",\n    #   description: \"bot\",\n    #   image:\"bot_line.png\"\n    # }],\n    \n    # likes: 0,\n    # category: [\"b8b34621-5e58-4c41-beb1-1e5bfb799611\"]\n    # budget: 1000,\n    # numberOfQuiz: 10\n    # passScore: 7\n    # desc: \"\"\n    # picture: []\n    # cover: \"\"\n    quiz:[{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    }],\n  }){\n    uuid\n    pageId\n    passScore\n  }\n}",
+						"query": "mutation {\n  createFacebookAccessToken(accessToken:\"EAAIq9rxQMZAABANVOiZBUhpmMIS21sa82KezXqrgKlaNtQ7aftMVr6zI0JfmTYc5ukrrIWfESd42l4rdyuDMkEdb9GZAu22UJgj1ZAYq12lFRr1AuE6utaTdJDNgJT6LCND0sp0BqDb2kRLr6NFAnUikuFdLT7SWEOQtq7totU7NXwnshdmlV6f6znOPMWGau2gFskSzbQZDZD\")\n}\n\n#accessToken คือ accessToken ที่ได้มาจาก Login Facebook ของผู้ใช้งาน\n#Authorization ใช้ token จาก api chatless ยิงพร้อม Header เหมือนเดิมเพราะต้องมี token จาก api chatless แนบมาด้วยครับ",
 						"variables": ""
 					}
 				},
 				"url": {
-					"raw": "http://api.chatless-dev.ml/query",
-					"protocol": "http",
+					"raw": "{{endpoint}}",
 					"host": [
-						"api",
-						"chatless-dev",
-						"ml"
+						"{{endpoint}}"
 					],
-					"path": [
-						"query"
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "allPage (Step2 Before Create Page)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "{\n  getMyUserDetail {\n    line {\n      data {\n        id\n        name\n        category\n        picture\n      }\n    }\n    facebook {\n     data {\n      id\n      name\n      category\n      picture\n     }\n    } \n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{endpoint}}",
+					"host": [
+						"{{endpoint}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createPage (Step2)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7e3e5b62-53cf-4c15-a439-3768b59676ca",
+						"exec": [
+							"pm.test(\"Test create page\", function () {",
+							"   var jsonData = pm.response.json();",
+							"    pm.expect(pm.response.text()).to.include(\"id\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\n  createPage(input:{\n    pageId:\"264231890283990\",\n    socialId:\"2f93fda9-05a8-413e-9966-a3e71136881e\"\n    #socialId ให้ใช้ id จาก Collection getSocialMethod\n  }){\n    uuid\n    pageId\n    passScore\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{endpoint}}",
+					"host": [
+						"{{endpoint}}"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updatePage (Step3)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c1905c0a-c049-468d-95e6-9dcb615a9a93",
+						"exec": [
+							"pm.test(\"Test create page\", function () {",
+							"   var jsonData = pm.response.json();",
+							"    pm.expect(pm.response.text()).to.include(\"id\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{accessToken}}"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\n  updatePage(input:{\n    pageId:\"264231890283990\",\n     step:\"3\",\n     category:[\"524bf9a9-9d19-479d-b358-0b0c32668c3f\"],\n     #ใช้ id category จาก collection getSocialMethod\n  }){\n    uuid\n    pageId\n    passScore\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{endpoint}}",
+					"host": [
+						"{{endpoint}}"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updatePage (Step4)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ad4763e2-a651-46de-bac3-acd47af0885e",
+						"exec": [
+							"pm.test(\"Test create page\", function () {",
+							"   var jsonData = pm.response.json();",
+							"    pm.expect(pm.response.text()).to.include(\"id\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{accessToken}}"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\n  updatePage(input:{\n    pageId:\"264231890283990\",\n     budget: 1000,\n     step:\"4\",\n  }){\n    uuid\n    pageId\n    passScore\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{endpoint}}",
+					"host": [
+						"{{endpoint}}"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updatePage (Step5)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7e2e5c1e-6cf0-4b74-94b0-3ba2a40057fb",
+						"exec": [
+							"pm.test(\"Test create page\", function () {",
+							"   var jsonData = pm.response.json();",
+							"    pm.expect(pm.response.text()).to.include(\"id\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{accessToken}}"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\n  updatePage(input:{\n    pageId:\"264231890283990\",\n    step:\"5\",\n    introPage:[{\n      header:\"GeneralCartoon\",\n      description: \"bot\",\n      image:\"bot_line.png\"\n    }]\n  }){\n    uuid\n    pageId\n    passScore\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{endpoint}}",
+					"host": [
+						"{{endpoint}}"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updatePage (Step6)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4b5f451d-6c84-44d9-b865-569676acec76",
+						"exec": [
+							"pm.test(\"Test create page\", function () {",
+							"   var jsonData = pm.response.json();",
+							"    pm.expect(pm.response.text()).to.include(\"id\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{accessToken}}"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\n  updatePage(input:{\n    pageId:\"264231890283990\",\n    step:\"6\",\n    numberOfQuiz: 10\n    passScore: 7\n    quiz:[{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    },{\n      question: \"10x5 = ?\"\n      desc: \"\"\n      awnserChoice: [{\n        seq: 1,\n        name: \"A\"\n        desc: \"50\"\n      },\n      {\n        seq: 2,\n        name: \"B\"\n        desc: \"100\"\n      }]\n      awnserCorrect: [{\n        name:\"A\"\n      }]\n      scoreCorrect: 1\n      scoreInCorrect: 0\n    }],\n  }){\n    uuid\n    pageId\n    passScore\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{endpoint}}",
+					"host": [
+						"{{endpoint}}"
 					],
 					"query": [
 						{
@@ -302,7 +463,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "5f0a959b-c426-44b6-be82-fddf0349af81",
+						"id": "3cbb6cfe-0912-4f3c-b660-34c7c2b74473",
 						"exec": [
 							"pm.test(\"Test get for main screen owner\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -330,15 +491,9 @@
 					}
 				},
 				"url": {
-					"raw": "http://api.chatless-dev.ml/query",
-					"protocol": "http",
+					"raw": "{{endpoint}}",
 					"host": [
-						"api",
-						"chatless-dev",
-						"ml"
-					],
-					"path": [
-						"query"
+						"{{endpoint}}"
 					]
 				}
 			},
@@ -350,7 +505,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "0fcdf0fd-8d14-4809-9014-c57161c8bc03",
+						"id": "40cb09c6-d9cc-4523-aa87-5e062b148953",
 						"exec": [
 							"pm.test(\"Test get for conversation home fanpage\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -373,20 +528,14 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "{\n  getConversationsByOwner(pageUID:\"7b2c014e-8dc0-4713-ae46-e3a632d5875b\",status:\"new\",label:\"new\"){\n    id\n    senders {\n      id\n      name\n      email\n      picture\n    }\n    message {\n      message\n      typeMessage\n      from {\n        id\n        email\n        name\n        picture\n      }\n    }\n    unreadCount\n    messageCount\n    lastMessage {\n      id\n      message\n      from {\n        id\n        email\n        name\n        picture\n      }\n    }\n    \n  }\n  \n}",
+						"query": "{\n  getConversationsByOwner(pageUID:\"01b18ecb-25c0-4790-99f2-3055482869aa\",status:\"new\",label:\"new\"){\n    id\n    senders {\n      id\n      name\n      email\n      picture\n    }\n    message {\n      message\n      typeMessage\n      from {\n        id\n        email\n        name\n        picture\n      }\n    }\n    unreadCount\n    messageCount\n    lastMessage {\n      id\n      message\n      from {\n        id\n        email\n        name\n        picture\n      }\n    }\n    \n  }\n  \n}",
 						"variables": ""
 					}
 				},
 				"url": {
-					"raw": "http://api.chatless-dev.ml/query",
-					"protocol": "http",
+					"raw": "{{endpoint}}",
 					"host": [
-						"api",
-						"chatless-dev",
-						"ml"
-					],
-					"path": [
-						"query"
+						"{{endpoint}}"
 					]
 				}
 			},
@@ -398,7 +547,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "2cf89a34-15f2-49da-889c-1a939e70c6de",
+						"id": "959a0d80-a2e1-49a0-b692-03854b9918f1",
 						"exec": [
 							"pm.test(\"Test get for conversation\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -426,14 +575,9 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:1323/query",
-					"protocol": "http",
+					"raw": "{{endpoint}}",
 					"host": [
-						"localhost"
-					],
-					"port": "1323",
-					"path": [
-						"query"
+						"{{endpoint}}"
 					]
 				}
 			},
@@ -445,7 +589,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "4c4a7817-86ae-498a-8d17-ea5398557e6c",
+						"id": "a1d68fcc-bd16-4ca9-9293-02cbd863c03b",
 						"exec": [
 							"pm.test(\"Test get for conversation\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -473,14 +617,9 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:1323/query",
-					"protocol": "http",
+					"raw": "{{endpoint}}",
 					"host": [
-						"localhost"
-					],
-					"port": "1323",
-					"path": [
-						"query"
+						"{{endpoint}}"
 					]
 				}
 			},
@@ -492,7 +631,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "0b353385-3e3c-439b-a906-e855205ad589",
+						"id": "a9ff9f1f-0706-4f3a-bcb3-c38b04d13c24",
 						"exec": [
 							"pm.test(\"Test get for conversation\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -520,14 +659,9 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:1323/query",
-					"protocol": "http",
+					"raw": "{{endpoint}}",
 					"host": [
-						"localhost"
-					],
-					"port": "1323",
-					"path": [
-						"query"
+						"{{endpoint}}"
 					]
 				}
 			},
@@ -539,7 +673,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "a99bfff5-78ed-49ef-bed4-d6186b8ac3bd",
+						"id": "e3b76c56-8075-47bf-9af0-7e872533dd74",
 						"exec": [
 							"pm.test(\"Test get my freelancerlist\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -567,14 +701,9 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:1323/query",
-					"protocol": "http",
+					"raw": "{{endpoint}}",
 					"host": [
-						"localhost"
-					],
-					"port": "1323",
-					"path": [
-						"query"
+						"{{endpoint}}"
 					]
 				}
 			},
@@ -586,7 +715,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "b8b83de3-e903-4bff-806b-841185470441",
+						"id": "a3582c6b-ded0-4871-94f2-145bf6f23a9d",
 						"exec": [
 							"pm.test(\"Test get my freelancerlist\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -614,14 +743,9 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:1323/query",
-					"protocol": "http",
+					"raw": "{{endpoint}}",
 					"host": [
-						"localhost"
-					],
-					"port": "1323",
-					"path": [
-						"query"
+						"{{endpoint}}"
 					]
 				}
 			},
@@ -633,7 +757,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "2b7a1633-cd3d-4abd-944a-2d391f01b2fe",
+						"id": "47f41e36-ecb0-4150-8c11-17dfdd1308bb",
 						"exec": [
 							"pm.test(\"Test get my freelancerlist\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -661,14 +785,9 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:1323/query",
-					"protocol": "http",
+					"raw": "{{endpoint}}",
 					"host": [
-						"localhost"
-					],
-					"port": "1323",
-					"path": [
-						"query"
+						"{{endpoint}}"
 					]
 				}
 			},
@@ -680,7 +799,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "0c9de1ed-5d02-4b41-8655-60bb7c207df5",
+						"id": "8c8a9a61-bb92-4efe-9811-fec72a142e22",
 						"exec": [
 							"pm.test(\"Test get my freelancerlist\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -708,14 +827,9 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:1323/query",
-					"protocol": "http",
+					"raw": "{{endpoint}}",
 					"host": [
-						"localhost"
-					],
-					"port": "1323",
-					"path": [
-						"query"
+						"{{endpoint}}"
 					]
 				}
 			},
@@ -727,7 +841,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "df695653-f1a5-48ab-81af-8a3cb0e3c66b",
+						"id": "abaac01b-6775-4990-9178-839dff785043",
 						"exec": [
 							"pm.test(\"Test get my freelancerlist\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -755,14 +869,9 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:1323/query",
-					"protocol": "http",
+					"raw": "{{endpoint}}",
 					"host": [
-						"localhost"
-					],
-					"port": "1323",
-					"path": [
-						"query"
+						"{{endpoint}}"
 					]
 				}
 			},
@@ -774,7 +883,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "70d6b510-aedc-41e1-bfa3-c5f1bc973b95",
+						"id": "9d17864a-c663-4d7c-a67b-b65a7f044a8e",
 						"exec": [
 							"pm.test(\"Test get my freelancerlist\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -802,14 +911,9 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:1323/query",
-					"protocol": "http",
+					"raw": "{{endpoint}}",
 					"host": [
-						"localhost"
-					],
-					"port": "1323",
-					"path": [
-						"query"
+						"{{endpoint}}"
 					]
 				}
 			},
@@ -821,7 +925,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "4f439f2c-6bd0-4851-82b0-f0a2fe65245f",
+						"id": "4873a711-9a64-4c03-9d68-c0ebbf1ce7fe",
 						"exec": [
 							"pm.test(\"Test get my freelancerlist\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -849,14 +953,9 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:1323/query",
-					"protocol": "http",
+					"raw": "{{endpoint}}",
 					"host": [
-						"localhost"
-					],
-					"port": "1323",
-					"path": [
-						"query"
+						"{{endpoint}}"
 					]
 				}
 			},
@@ -868,7 +967,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "55e09994-0ff0-4df0-ae0f-f9fec41231a8",
+						"id": "7d5db54a-13ae-48ff-8ef4-0f8fd882f2b8",
 						"exec": [
 							"pm.test(\"Test get my freelancerlist\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -896,14 +995,9 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:1323/query",
-					"protocol": "http",
+					"raw": "{{endpoint}}",
 					"host": [
-						"localhost"
-					],
-					"port": "1323",
-					"path": [
-						"query"
+						"{{endpoint}}"
 					]
 				}
 			},
@@ -915,7 +1009,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "26849400-393f-4847-843e-6445ecdb5d7c",
+						"id": "5e9058a0-0dc0-4825-ad62-7594aa8fc153",
 						"exec": [
 							"pm.test(\"Test get my freelancerlist\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -943,14 +1037,9 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:1323/query",
-					"protocol": "http",
+					"raw": "{{endpoint}}",
 					"host": [
-						"localhost"
-					],
-					"port": "1323",
-					"path": [
-						"query"
+						"{{endpoint}}"
 					]
 				}
 			},
@@ -962,7 +1051,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "d20915bc-2086-4468-a249-2ef60ad2a0ba",
+						"id": "3a3fcbcf-e71c-4c01-be7f-44359b3b92c3",
 						"exec": [
 							"pm.test(\"Test get my freelancerlist\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -990,14 +1079,9 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:1323/query",
-					"protocol": "http",
+					"raw": "{{endpoint}}",
 					"host": [
-						"localhost"
-					],
-					"port": "1323",
-					"path": [
-						"query"
+						"{{endpoint}}"
 					]
 				}
 			},
@@ -1009,7 +1093,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "acaecd1b-5a9b-4a3d-930a-7a2ce7baa2d1",
+						"id": "03ee160f-ec98-43b1-916f-041534fc914f",
 						"exec": [
 							"pm.test(\"Test get my freelancerlist\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -1037,14 +1121,9 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:1323/query",
-					"protocol": "http",
+					"raw": "{{endpoint}}",
 					"host": [
-						"localhost"
-					],
-					"port": "1323",
-					"path": [
-						"query"
+						"{{endpoint}}"
 					]
 				}
 			},
@@ -1056,7 +1135,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "b97794ee-6749-4aa1-b666-f9e103a15027",
+						"id": "329de287-b524-4565-bbc5-03fadfd6306b",
 						"exec": [
 							"pm.test(\"Test get my freelancerlist\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -1084,14 +1163,9 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:1323/query",
-					"protocol": "http",
+					"raw": "{{endpoint}}",
 					"host": [
-						"localhost"
-					],
-					"port": "1323",
-					"path": [
-						"query"
+						"{{endpoint}}"
 					]
 				}
 			},
@@ -1103,7 +1177,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "8583ef5b-791e-411d-a653-eef1632ba65c",
+						"id": "f389e3a5-e07e-4063-b0bb-b1ec75652bd7",
 						"exec": [
 							"pm.test(\"Test get my freelancerlist\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -1131,14 +1205,9 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:1323/query",
-					"protocol": "http",
+					"raw": "{{endpoint}}",
 					"host": [
-						"localhost"
-					],
-					"port": "1323",
-					"path": [
-						"query"
+						"{{endpoint}}"
 					]
 				}
 			},
@@ -1150,7 +1219,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "9e4cb641-f647-4609-b32f-e67239d77788",
+						"id": "1e4c3165-414b-4d96-a168-22eff5694e98",
 						"exec": [
 							"pm.test(\"Test get my freelancerlist\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -1178,14 +1247,9 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:1323/query",
-					"protocol": "http",
+					"raw": "{{endpoint}}",
 					"host": [
-						"localhost"
-					],
-					"port": "1323",
-					"path": [
-						"query"
+						"{{endpoint}}"
 					]
 				}
 			},
@@ -1197,7 +1261,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "977e8872-bb47-426c-82fe-ea31214434f5",
+						"id": "d4781e65-8f64-4b1c-8a32-856adf2bc59d",
 						"exec": [
 							"pm.test(\"Test get my freelancerlist\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -1225,14 +1289,9 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:1323/query",
-					"protocol": "http",
+					"raw": "{{endpoint}}",
 					"host": [
-						"localhost"
-					],
-					"port": "1323",
-					"path": [
-						"query"
+						"{{endpoint}}"
 					]
 				}
 			},
@@ -1244,7 +1303,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "e8254702-401b-4d75-b86c-8c22d71f75a7",
+						"id": "8e747ffb-3cc3-41fa-bc62-edb6c50e4e14",
 						"exec": [
 							"pm.test(\"Test get my freelancerlist\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -1272,14 +1331,9 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:1323/query",
-					"protocol": "http",
+					"raw": "{{endpoint}}",
 					"host": [
-						"localhost"
-					],
-					"port": "1323",
-					"path": [
-						"query"
+						"{{endpoint}}"
 					]
 				}
 			},
@@ -1291,7 +1345,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "a0fd6a73-d544-4b2b-ab0c-d38c54770bdd",
+						"id": "a3b0dcf6-821b-47de-b26b-716fe6fb926a",
 						"exec": [
 							"pm.test(\"Test get my freelancerlist\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -1319,14 +1373,9 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:1323/query",
-					"protocol": "http",
+					"raw": "{{endpoint}}",
 					"host": [
-						"localhost"
-					],
-					"port": "1323",
-					"path": [
-						"query"
+						"{{endpoint}}"
 					]
 				}
 			},
@@ -1338,7 +1387,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "ef34287b-757a-452c-8c97-da9177c2127f",
+						"id": "c5cb052f-9f2f-4cf8-a615-2aba297d9777",
 						"exec": [
 							"pm.test(\"Test get my freelancerlist\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -1366,14 +1415,9 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:1323/query",
-					"protocol": "http",
+					"raw": "{{endpoint}}",
 					"host": [
-						"localhost"
-					],
-					"port": "1323",
-					"path": [
-						"query"
+						"{{endpoint}}"
 					]
 				}
 			},
@@ -1385,7 +1429,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "86eda8e2-379b-4454-847d-5a86aa3b3f7c",
+						"id": "8a607ac3-4e52-41ae-b3db-b7653e567c05",
 						"exec": [
 							"pm.test(\"Test get my freelancerlist\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -1413,14 +1457,9 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:1323/query",
-					"protocol": "http",
+					"raw": "{{endpoint}}",
 					"host": [
-						"localhost"
-					],
-					"port": "1323",
-					"path": [
-						"query"
+						"{{endpoint}}"
 					]
 				}
 			},
@@ -1432,7 +1471,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "a96fcbd5-aae2-48df-905d-b33ee76ae4fb",
+						"id": "d0b716fb-00e3-4aee-bb68-9339c8afa2ab",
 						"exec": [
 							"pm.test(\"Test get my freelancerlist\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -1460,14 +1499,9 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:1323/query",
-					"protocol": "http",
+					"raw": "{{endpoint}}",
 					"host": [
-						"localhost"
-					],
-					"port": "1323",
-					"path": [
-						"query"
+						"{{endpoint}}"
 					]
 				}
 			},
@@ -1479,7 +1513,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "a2ffef6a-fa26-48c4-87a3-f77c230e94a1",
+						"id": "8721c930-57e5-4086-8fa1-ee315485c0cd",
 						"exec": [
 							"pm.test(\"Test get my freelancerlist\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -1507,14 +1541,9 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:1323/query",
-					"protocol": "http",
+					"raw": "{{endpoint}}",
 					"host": [
-						"localhost"
-					],
-					"port": "1323",
-					"path": [
-						"query"
+						"{{endpoint}}"
 					]
 				}
 			},
@@ -1526,7 +1555,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "955b7e01-96ae-45d0-b658-91c545284b11",
+						"id": "091d3aee-7dfe-4024-a898-61e8a640ea60",
 						"exec": [
 							"pm.test(\"Test get my freelancerlist\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -1554,14 +1583,9 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:1323/query",
-					"protocol": "http",
+					"raw": "{{endpoint}}",
 					"host": [
-						"localhost"
-					],
-					"port": "1323",
-					"path": [
-						"query"
+						"{{endpoint}}"
 					]
 				}
 			},
@@ -1573,7 +1597,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "dfa50f63-91bd-4321-882e-af140030306f",
+						"id": "18759f88-26ab-4d55-bac9-617ff7e8a2d3",
 						"exec": [
 							"pm.test(\"Test get my freelancerlist\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -1601,14 +1625,9 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:1323/query",
-					"protocol": "http",
+					"raw": "{{endpoint}}",
 					"host": [
-						"localhost"
-					],
-					"port": "1323",
-					"path": [
-						"query"
+						"{{endpoint}}"
 					]
 				}
 			},
@@ -1633,18 +1652,14 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:1323/query",
-					"protocol": "http",
+					"raw": "{{endpoint}}",
 					"host": [
-						"localhost"
-					],
-					"port": "1323",
-					"path": [
-						"query"
+						"{{endpoint}}"
 					]
 				}
 			},
 			"response": []
 		}
-	]
+	],
+	"protocolProfileBehavior": {}
 }
